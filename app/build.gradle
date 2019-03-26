@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.sarkisian.gh"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Support
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    // Tests
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.robolectric:robolectric:3.6.1"
+    testImplementation 'org.mockito:mockito-core:2.12.0'
+    testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2') {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.19'
+    implementation 'com.google.dagger:dagger-android:2.19'
+    implementation 'com.google.dagger:dagger-android-support:2.19'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:2.19"
+
+    // Other
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.jakewharton.timber:timber:4.7.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+
+    // AAC
+    // Lifecycle
+    implementation "android.arch.lifecycle:runtime:1.1.1"
+    implementation "android.arch.lifecycle:common-java8:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    // LiveData and ViewModel
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    testImplementation "android.arch.core:core-testing:1.1.1"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    testImplementation "android.arch.persistence.room:testing:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+
+}
