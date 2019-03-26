@@ -18,11 +18,11 @@ public class RepoListViewModel extends ViewModel {
     private final GitHubRepository mGitHubRepository;
 
     @Inject
-    public RepoListViewModel(GitHubRepository gitHubRepository) {
+    RepoListViewModel(GitHubRepository gitHubRepository) {
         mGitHubRepository = gitHubRepository;
     }
 
-    public LiveData<Resource<List<Repo>>> getRepoList(String username) {
+    LiveData<Resource<List<Repo>>> getRepoList(String username) {
         if (username == null){
             return AbsentLiveData.create();
         } else {

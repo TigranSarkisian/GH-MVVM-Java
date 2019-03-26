@@ -19,15 +19,12 @@ import static com.sarkisian.gh.data.db.DbFactory.REPO_TABLE;
 public interface RepoDao {
 
     @Insert(onConflict = REPLACE)
-    void insertRepos(List<Repo> repos);
+    void insertOrUpdateRepos(List<Repo> repos);
 
     @Query("SELECT * FROM " + REPO_TABLE)
     LiveData<List<Repo>> getRepos();
 
     @Delete
     void deleteRepo(Repo repo);
-
-    @Update(onConflict = REPLACE)
-    void updateRepos(List<Repo> repos);
 
 }

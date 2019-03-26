@@ -17,11 +17,13 @@ public class ApiFactory {
 
     public static GitHubService getGitHubService() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
             httpClient.addInterceptor(logging);
         }
+
         OkHttpClient okHttpClient = httpClient.build();
 
         return new Retrofit.Builder()

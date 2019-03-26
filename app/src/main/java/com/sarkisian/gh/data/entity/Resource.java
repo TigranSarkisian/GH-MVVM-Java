@@ -39,16 +39,21 @@ public class Resource<T> {
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
         Resource<?> resource = (Resource<?>) o;
+
         if (mStatus != resource.mStatus) {
             return false;
         }
+
         if (mMessage != null ? !mMessage.equals(resource.mMessage) : resource.mMessage != null) {
             return false;
         }
+
         return mData != null ? mData.equals(resource.mData) : resource.mData == null;
     }
 

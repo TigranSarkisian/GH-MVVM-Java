@@ -78,9 +78,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
     }
 
     public interface OnItemClickListener {
-
         void onItemClick(Repo repo);
-
         void onItemLongClick(Repo repo);
     }
 

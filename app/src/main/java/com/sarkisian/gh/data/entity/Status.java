@@ -17,7 +17,7 @@
 package com.sarkisian.gh.data.entity;
 
 public enum Status {
-
-    SUCCESS, ERROR, LOADING
-
+    SUCCESS,
+    ERROR,
+    LOADING
 }

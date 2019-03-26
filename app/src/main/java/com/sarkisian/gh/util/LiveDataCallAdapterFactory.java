@@ -29,7 +29,7 @@ public class LiveDataCallAdapterFactory extends CallAdapter.Factory {
             throw new IllegalArgumentException("type must be a resource");
         }
 
-        if (! (observableType instanceof ParameterizedType)) {
+        if (!(observableType instanceof ParameterizedType)) {
             throw new IllegalArgumentException("resource must be parameterized");
         }
 

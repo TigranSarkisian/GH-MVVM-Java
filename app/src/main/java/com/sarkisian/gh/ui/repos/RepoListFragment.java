@@ -25,13 +25,17 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
+import static com.sarkisian.gh.data.entity.Status.ERROR;
+import static com.sarkisian.gh.data.entity.Status.SUCCESS;
+
 public class RepoListFragment extends BaseFragment implements RepoAdapter.OnItemClickListener,
         SwipeRefreshLayout.OnRefreshListener {
 
     private RepoAdapter mRepoAdapter;
     private FragmentRepoListBinding mBinding;
     private RepoListViewModel mReposViewModel;
-    @Inject ViewModelProvider.Factory mViewModelFactory;
+    @Inject
+    ViewModelProvider.Factory mViewModelFactory;
 
     public static RepoListFragment newInstance() {
         return new RepoListFragment();
@@ -58,7 +62,6 @@ public class RepoListFragment extends BaseFragment implements RepoAdapter.OnItem
         mBinding.rvRepoList.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
         mBinding.srlRepoList.setOnRefreshListener(this);
-        mBinding.srlRepoList.setRefreshing(true);
 
         mRepoAdapter = new RepoAdapter(this);
         mBinding.rvRepoList.setAdapter(mRepoAdapter);
@@ -90,6 +93,7 @@ public class RepoListFragment extends BaseFragment implements RepoAdapter.OnItem
         mReposViewModel.getRepoList("google").observe(this, resource -> {
             if (resource != null) {
                 Timber.i(String.valueOf(resource.mStatus));
+                Toast.makeText(getContext(), String.valueOf(resource.mStatus), Toast.LENGTH_SHORT).show();
 
                 if (resource.mData != null) {
                     mBinding.srlRepoList.setRefreshing(false);

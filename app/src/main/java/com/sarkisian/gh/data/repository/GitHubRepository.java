@@ -38,7 +38,7 @@ public class GitHubRepository {
         return new NetworkBoundResource<List<Repo>, List<Repo>>(mAppExecutors) {
             @Override
             protected void saveCallResult(@NonNull List<Repo> repoList) {
-                mGitHubDatabase.repoDao().insertRepos(repoList);
+                mGitHubDatabase.repoDao().insertOrUpdateRepos(repoList);
             }
 
             @Override

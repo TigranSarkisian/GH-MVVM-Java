@@ -15,8 +15,7 @@ import timber.log.Timber;
 
 public class ApiResponse<T> {
 
-    private static final Pattern LINK_PATTERN = Pattern
-            .compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
+    private static final Pattern LINK_PATTERN = Pattern.compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
 
     public final int mCode;
     @Nullable
@@ -42,16 +41,19 @@ public class ApiResponse<T> {
 
         } else {
             String message = null;
+
             if (response.errorBody() != null) {
                 try {
                     message = response.errorBody().string();
-                } catch (IOException ignored) {
-                    Timber.e(ignored, "Error while parsing response");
+                } catch (IOException ex) {
+                    Timber.e(ex, "Error while parsing response");
                 }
             }
+
             if (message == null || message.trim().length() == 0) {
                 message = response.message();
             }
+
             mErrorMessage = message;
             mBody = null;
         }
@@ -67,6 +69,7 @@ public class ApiResponse<T> {
 
             while (matcher.find()) {
                 int count = matcher.groupCount();
+
                 if (count == 2) {
                     mLinks.put(matcher.group(2), matcher.group(1));
                 }
