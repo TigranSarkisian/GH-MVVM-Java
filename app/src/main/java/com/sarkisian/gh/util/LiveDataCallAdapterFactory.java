@@ -3,7 +3,7 @@ package com.sarkisian.gh.util;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import com.sarkisian.gh.data.api.ApiResponse;
+import com.sarkisian.gh.data.entity.ApiResponse;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;

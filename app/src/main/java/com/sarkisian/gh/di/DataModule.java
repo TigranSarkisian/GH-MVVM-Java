@@ -3,7 +3,6 @@ package com.sarkisian.gh.di;
 import android.content.Context;
 
 import com.sarkisian.gh.GitHubApp;
-import com.sarkisian.gh.data.api.ApiFactory;
 import com.sarkisian.gh.data.api.GitHubAPI;
 import com.sarkisian.gh.data.db.DbFactory;
 import com.sarkisian.gh.data.db.GitHubDatabase;
@@ -18,18 +17,20 @@ import dagger.Provides;
 
 
 @Module
-public class AppModule {
+public class DataModule {
 
-    @Singleton
     @Provides
-    Context provideContext(GitHubApp application) {
-        return application.getApplicationContext();
+    @Singleton
+    GitHubDatabase provideGitHubDatabase(Context context) {
+        return DbFactory.buildDb(context);
     }
 
     @Singleton
     @Provides
-    NetworkUtil provideNetworkUtil(Context context) {
-        return new NetworkUtil(context);
+    GitHubRepository provideGitHubRepository(GitHubAPI gitHubAPI,
+                                             GitHubDatabase repoDatabase,
+                                             AppExecutors appExecutors) {
+        return new GitHubRepository(gitHubAPI, repoDatabase, appExecutors);
     }
 
 }

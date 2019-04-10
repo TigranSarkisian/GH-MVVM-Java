@@ -33,6 +33,7 @@ public class GitHubApp extends Application implements HasActivityInjector {
         turnOnStrictMode();
         RxJavaPlugins.setErrorHandler(throwable -> Timber.e(throwable.toString()));
         Timber.plant(new Timber.DebugTree());
+
         DaggerAppComponent
                 .builder()
                 .application(this)

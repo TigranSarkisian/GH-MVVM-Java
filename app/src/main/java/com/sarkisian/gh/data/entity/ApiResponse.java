@@ -1,4 +1,4 @@
-package com.sarkisian.gh.data.api;
+package com.sarkisian.gh.data.entity;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,15 +15,16 @@ import timber.log.Timber;
 
 public class ApiResponse<T> {
 
-    private static final Pattern LINK_PATTERN = Pattern.compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
+    private static final Pattern LINK_PATTERN =
+            Pattern.compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
 
-    public final int mCode;
+    private final int mCode;
     @Nullable
-    public final T mBody;
+    private final T mBody;
     @Nullable
-    public final String mErrorMessage;
+    private final String mErrorMessage;
     @NonNull
-    public final Map<String, String> mLinks;
+    private final Map<String, String> mLinks;
 
     public ApiResponse(Throwable error) {
         mCode = 500;
@@ -79,6 +80,14 @@ public class ApiResponse<T> {
 
     public boolean isSuccessful() {
         return mCode >= 200 && mCode < 300;
+    }
+
+    public T getBody() {
+        return mBody;
+    }
+
+    public String getErrorMessage() {
+        return mErrorMessage;
     }
 
 }

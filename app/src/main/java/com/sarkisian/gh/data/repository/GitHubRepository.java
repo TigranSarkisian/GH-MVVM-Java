@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.sarkisian.gh.data.api.ApiResponse;
-import com.sarkisian.gh.data.api.GitHubService;
+import com.sarkisian.gh.data.entity.ApiResponse;
+import com.sarkisian.gh.data.api.GitHubAPI;
 import com.sarkisian.gh.data.db.GitHubDatabase;
 import com.sarkisian.gh.data.entity.Repo;
 import com.sarkisian.gh.data.entity.Resource;
@@ -21,15 +21,15 @@ import timber.log.Timber;
 @Singleton
 public class GitHubRepository {
 
-    private final GitHubService mGitHubService;
+    private final GitHubAPI mGitHubAPI;
     private final GitHubDatabase mGitHubDatabase;
     private final AppExecutors mAppExecutors;
 
     @Inject
-    public GitHubRepository(GitHubService gitHubService,
+    public GitHubRepository(GitHubAPI gitHubAPI,
                             GitHubDatabase gitHubDatabase,
                             AppExecutors appExecutors) {
-        mGitHubService = gitHubService;
+        mGitHubAPI = gitHubAPI;
         mGitHubDatabase = gitHubDatabase;
         mAppExecutors = appExecutors;
     }
@@ -55,7 +55,7 @@ public class GitHubRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<List<Repo>>> callApi() {
-                return mGitHubService.getRepos(gitHubUser);
+                return mGitHubAPI.getRepos(gitHubUser);
             }
 
             @Override

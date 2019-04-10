@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import retrofit2.HttpException;
 
-public class ExcUtil {
+public class ExceptionUtil {
 
     public static String readError(Throwable error) {
         String errorMessage;
@@ -17,7 +17,7 @@ public class ExcUtil {
         } else {
             if (error != null) {
                 errorMessage = error.getMessage();
-                if (errorMessage == null){
+                if (errorMessage == null) {
                     errorMessage = Constant.Error.UNKNOWN_ERROR;
                 }
             } else {

@@ -31,7 +31,6 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
                 R.layout.repo_item,
                 viewGroup,
                 false);
-
         return new ViewHolder(binding, mRepoList, mOnItemClickListener);
     }
 

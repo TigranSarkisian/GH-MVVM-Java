@@ -6,7 +6,7 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.sarkisian.gh.data.api.ApiResponse;
+import com.sarkisian.gh.data.entity.ApiResponse;
 import com.sarkisian.gh.data.entity.Resource;
 import com.sarkisian.gh.util.AppExecutors;
 
@@ -69,9 +69,9 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
                 });
 
             } else {
-                onApiCallFailed(response.mErrorMessage);
+                onApiCallFailed(response.getErrorMessage());
                 mResult.addSource(localSource,
-                        newData -> setValue(Resource.error(response.mErrorMessage, newData)));
+                        newData -> setValue(Resource.error(response.getErrorMessage(), newData)));
             }
         });
     }
@@ -84,7 +84,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     }
 
     private RequestType processResponse(ApiResponse<RequestType> response) {
-        return response.mBody;
+        return response.getBody();
     }
 
     protected abstract void saveCallResult(@NonNull RequestType item);

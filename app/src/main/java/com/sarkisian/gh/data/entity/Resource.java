@@ -10,16 +10,20 @@ import static com.sarkisian.gh.data.entity.Status.SUCCESS;
 public class Resource<T> {
 
     @NonNull
-    public final Status mStatus;
+    private final Status mStatus;
     @Nullable
-    public final String mMessage;
+    private final String mMessage;
     @Nullable
     public final T mData;
 
-    public Resource(@NonNull Status status, @Nullable T data, @Nullable String message) {
+    private Resource(@NonNull Status status, @Nullable T data, @Nullable String message) {
         this.mStatus = status;
         this.mData = data;
         this.mMessage = message;
+    }
+
+    public Status getStatus() {
+        return mStatus;
     }
 
     public static <T> Resource<T> success(@Nullable T data) {
@@ -73,5 +77,6 @@ public class Resource<T> {
                 ", data=" + mData +
                 '}';
     }
+
 
 }

@@ -15,7 +15,7 @@ public class ApiFactory {
         static final String BASE_URL = "https://api.github.com/";
     }
 
-    public static GitHubService getGitHubService() {
+    public static GitHubAPI getGitHubService() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         if (BuildConfig.DEBUG) {
@@ -34,7 +34,7 @@ public class ApiFactory {
                 .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(GitHubService.class);
+                .create(GitHubAPI.class);
     }
 
 }

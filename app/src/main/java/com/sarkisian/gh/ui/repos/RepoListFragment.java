@@ -53,13 +53,17 @@ public class RepoListFragment extends BaseFragment implements RepoAdapter.OnItem
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_repo_list,
-                container, false);
+        mBinding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_repo_list,
+                container,
+                false);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mBinding.rvRepoList.setLayoutManager(linearLayoutManager);
         mBinding.rvRepoList.setHasFixedSize(true);
-        mBinding.rvRepoList.addItemDecoration(new DividerItemDecoration(getContext(),
+        mBinding.rvRepoList.addItemDecoration(
+                new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
         mBinding.srlRepoList.setOnRefreshListener(this);
 
@@ -92,8 +96,8 @@ public class RepoListFragment extends BaseFragment implements RepoAdapter.OnItem
     private void loadRepos() {
         mReposViewModel.getRepoList("google").observe(this, resource -> {
             if (resource != null) {
-                Timber.i(String.valueOf(resource.mStatus));
-                Toast.makeText(getContext(), String.valueOf(resource.mStatus), Toast.LENGTH_SHORT).show();
+                Timber.i(String.valueOf(resource.getStatus()));
+                Toast.makeText(getContext(), String.valueOf(resource.getStatus()), Toast.LENGTH_SHORT).show();
 
                 if (resource.mData != null) {
                     mBinding.srlRepoList.setRefreshing(false);
